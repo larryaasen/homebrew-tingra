@@ -16,13 +16,28 @@ tingra-cli serve --install
 
 ### Verify it works
 
-Point an agent at the server — quickest with Claude Code:
+Connect an agent to the server, then ask it to list your devices.
+
+**Claude Desktop** — add Tingra to `~/Library/Application Support/Claude/claude_desktop_config.json`, then quit and reopen Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "tingra": {
+      "command": "/opt/homebrew/bin/tingra-cli",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+**Claude Code** — run:
 
 ```sh
 claude mcp add tingra -- /opt/homebrew/bin/tingra-cli mcp
 ```
 
-(For Claude Desktop, see the [main README](https://github.com/larryaasen/tingra#4-use-it-from-claude).) Then paste this to your agent:
+Then paste this to your agent:
 
 > **Using Tingra, list my cameras and microphones.**
 
