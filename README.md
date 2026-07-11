@@ -14,7 +14,21 @@ Then register the MCP server (a launchd LaunchAgent, so camera/mic prompts are a
 tingra-cli serve --install
 ```
 
-See the [main README](https://github.com/larryaasen/tingra#getting-started-the-cli-and-mcp-server) for setup and Claude examples.
+### Verify it works
+
+Point an agent at the server — quickest with Claude Code:
+
+```sh
+claude mcp add tingra -- /opt/homebrew/bin/tingra-cli mcp
+```
+
+(For Claude Desktop, see the [main README](https://github.com/larryaasen/tingra#4-use-it-from-claude).) Then paste this to your agent:
+
+> **Using Tingra, list my cameras and microphones.**
+
+It should call Tingra's `devices_list` tool and return your devices — confirming the MCP server is live. Listing devices needs no camera permission and no streaming key, so it's a safe first check.
+
+See the [main README](https://github.com/larryaasen/tingra#getting-started-the-cli-and-mcp-server) for full setup and more Claude examples.
 
 ## What's here
 
