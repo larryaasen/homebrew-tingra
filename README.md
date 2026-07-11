@@ -18,7 +18,11 @@ tingra-cli serve --install
 
 Connect an agent to the server, then ask it to list your devices.
 
-**Claude Desktop** — add Tingra to `~/Library/Application Support/Claude/claude_desktop_config.json`, then quit and reopen Claude Desktop:
+**Claude Desktop** — Claude Desktop doesn't yet have a form for adding a local MCP server by command, so this still means editing a config file, but Claude opens it for you:
+
+1. Open **Claude → Settings → Developer**.
+2. Click **Edit Config** — this opens `claude_desktop_config.json` in your default editor (creating it if it doesn't exist yet).
+3. Add the `tingra` entry below (merge it into the existing `mcpServers` object if there is one), save, and quit and reopen Claude Desktop:
 
 ```json
 {
