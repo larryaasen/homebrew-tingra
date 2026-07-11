@@ -47,6 +47,12 @@ Then paste this to your agent:
 
 It should call Tingra's `devices_list` tool and return your devices — confirming the MCP server is live. Listing devices needs no camera permission and no streaming key, so it's a safe first check.
 
+Once that works, go live the same way:
+
+> **Start streaming with Tingra to my Twitch channel.**
+
+Claude will ask for your Twitch RTMP URL and stream key if it doesn't already have them, then call `stream_start`. The key goes straight into Tingra's Keychain-backed secure storage and is never echoed back. Say "stop the stream" when you're done.
+
 See the [main README](https://github.com/larryaasen/tingra#getting-started-the-cli-and-mcp-server) for full setup and more Claude examples.
 
 ## What's here
