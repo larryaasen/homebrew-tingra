@@ -10,14 +10,14 @@
 # machine would produce an unsigned binary with no stable identity — no
 # notarization, and TCC grants keyed to nothing.
 #
-# Each release: run scripts/package-cli.sh, then update `version` and `sha256`
+# Each release: run scripts/release-cli-package.sh, then update `version` and `sha256`
 # below from its output and commit the formula to the tap.
 class TingraCli < Formula
   desc "Native macOS live-streaming engine with an MCP server (headless CLI front end)"
   homepage "https://github.com/larryaasen/tingra"
-  version "0.1.0"
+  version "0.1.1"
   url "https://github.com/larryaasen/tingra/releases/download/v#{version}/tingra-cli-#{version}-arm64.zip"
-  sha256 "7478c042aa21b6b3cd468b604844dc2373e24ef2484b71e3751d31f3ca8ed6b9"
+  sha256 "208281579c13d8bc8599cae67d1a35f105ca976134ccd0ceb38e666dc2407f4d"
   license "MIT"
 
   # Apple Silicon (arm64), macOS 15+ only (see Platform Support in CLAUDE.md).
