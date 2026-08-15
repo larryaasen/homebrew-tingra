@@ -15,9 +15,9 @@
 class TingraCli < Formula
   desc "Native macOS live-streaming engine with an MCP server (headless CLI front end)"
   homepage "https://github.com/larryaasen/tingra"
-  version "0.1.1"
+  version "0.1.2"
   url "https://github.com/larryaasen/tingra/releases/download/v#{version}/tingra-cli-#{version}-arm64.zip"
-  sha256 "208281579c13d8bc8599cae67d1a35f105ca976134ccd0ceb38e666dc2407f4d"
+  sha256 "87e1f9bab9d6f4fad41d496ab1195c835cff085e9ee2e1f865b1bdcde59ff6dc"
   license "MIT"
 
   # Apple Silicon (arm64), macOS 15+ only (see Platform Support in CLAUDE.md).
