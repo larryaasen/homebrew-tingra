@@ -1,8 +1,18 @@
 # Tingra Homebrew Tap
 
-A [Homebrew](https://brew.sh) tap for [Tingra](https://github.com/larryaasen/tingra) — native macOS live streaming, and its MCP server for AI agents.
+A [Homebrew](https://brew.sh) tap for [Tingra](https://github.com/larryaasen/tingra) — native macOS live streaming, its MCP server for AI agents, and Tingra Cameras.
 
-## Install
+## Tingra Cameras
+
+A small macOS app for picking a camera and microphone, with a live preview and the controls of a USB webcam (exposure, focus, white balance, zoom, and more). Install it as a cask:
+
+```sh
+brew install --cask larryaasen/tingra/tingra-cameras
+```
+
+It installs `Tingra Cameras.app` into `/Applications`. Apple Silicon and macOS 26 (Tahoe) or later. The first time you open it, macOS asks for camera and microphone access.
+
+## Install the CLI
 
 ```sh
 brew install larryaasen/tingra/tingra-cli
@@ -57,6 +67,7 @@ See the [main README](https://github.com/larryaasen/tingra#getting-started-the-c
 
 ## What's here
 
+- **`tingra-cameras`** — the Tingra Cameras app (a cask). Apple Silicon (arm64), macOS 26+. Signed, notarized, and stapled; the tap downloads the prebuilt disk image from the app's GitHub release.
 - **`tingra-cli`** — the headless engine front end (stream, record, and the MCP server). Apple Silicon (arm64), macOS 15+. Signed and notarized; the tap downloads the prebuilt binary and never builds from source.
 
 ## Upgrade / uninstall
@@ -67,6 +78,9 @@ tingra-cli serve --install     # re-point the LaunchAgent after an upgrade
 
 brew uninstall tingra-cli
 tingra-cli serve --uninstall   # run before uninstalling to remove the LaunchAgent
+
+brew upgrade --cask tingra-cameras
+brew uninstall --cask tingra-cameras
 ```
 
 ## License
