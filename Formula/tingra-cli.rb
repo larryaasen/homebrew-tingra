@@ -10,24 +10,34 @@
 # machine would produce an unsigned binary with no stable identity — no
 # notarization, and TCC grants keyed to nothing.
 #
-# Each release: run scripts/release-cli-package.sh, then update `version` and `sha256`
-# below from its output and commit the formula to the tap.
+# Each release: the CI workflow renders this file into the tap with the new
+# `version` and `sha256`. By hand, run scripts/release-cli-package.sh and copy
+# both from its output.
+#
+# The zip holds one `tingra-cli/` folder: the binary, and a `Frameworks` folder
+# holding the two plug-in kit frameworks it loads through its
+# `@loader_path/Frameworks` rpath (docs/PLUGINS.md, Decisions 22 and 30).
+# Homebrew descends into that single top-level directory, so `libexec.install`
+# sees the two entries; the binary is linked into `bin`, and dyld resolves the
+# link before expanding `@loader_path`. The packaging script zips with
+# `ditto --keepParent`. Keep the two in step.
 class TingraCli < Formula
   desc "Native macOS live-streaming engine with an MCP server (headless CLI front end)"
   homepage "https://github.com/larryaasen/tingra"
-  version "0.1.3"
+  version "0.2.0"
   url "https://github.com/larryaasen/tingra/releases/download/v#{version}/tingra-cli-#{version}-arm64.zip"
-  sha256 "fb643fd27dc7e94d5a40ebccd8af3b4afc490ebb7c9373ff75c780c672ca43e6"
+  sha256 "2a35fdda91bdbd06db4a6b88e5be2d590de8f410c7f64b875f1251324882c8eb"
   license "MIT"
 
-  # Apple Silicon (arm64), macOS 15+ only (see Platform Support in CLAUDE.md).
+  # Apple Silicon (arm64), macOS 15+ only.
   depends_on macos: :sequoia
   on_intel do
     odie "tingra-cli ships for Apple Silicon (arm64) only."
   end
 
   def install
-    bin.install "tingra-cli"
+    libexec.install "tingra-cli", "Frameworks"
+    bin.install_symlink libexec/"tingra-cli"
   end
 
   def caveats
