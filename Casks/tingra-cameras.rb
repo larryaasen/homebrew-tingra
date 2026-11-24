@@ -20,8 +20,8 @@
 # it alone. `camera-presets.json.unreadable` is the copy the app sets aside when
 # the presets file cannot be read.
 cask "tingra-cameras" do
-  version "0.1.0"
-  sha256 "5c8aaf89d61aaf6694f84ab9f15b5a7475e6969ae929f3f31383e3afe8c01c3f"
+  version "0.2.0"
+  sha256 "f4f8f3012199279144b10834beace376710bc770895ee233b2748303e5ad3f48"
 
   url "https://github.com/larryaasen/tingra/releases/download/cameras-v#{version}/Tingra-Cameras-#{version}-arm64.dmg"
   name "Tingra Cameras"
