@@ -1,6 +1,18 @@
 # Tingra Homebrew Tap
 
-A [Homebrew](https://brew.sh) tap for [Tingra](https://github.com/larryaasen/tingra) — native macOS live streaming, its MCP server for AI agents, and Tingra Cameras.
+A [Homebrew](https://brew.sh) tap for [Tingra](https://github.com/larryaasen/tingra) — native macOS live production and streaming: the Tingra app, its headless CLI and MCP server for AI agents, and Tingra Cameras.
+
+## Tingra
+
+The Tingra app: build shots from cameras, screens, windows, and media, mix their audio, and stream or record the program. Install it as a cask:
+
+```sh
+brew install --cask larryaasen/tingra/tingra
+```
+
+It installs `Tingra.app` into `/Applications`. Apple Silicon and macOS 15 (Sequoia) or later. macOS asks for camera, microphone, and screen recording access the first time Tingra uses each one.
+
+The app does not include the CLI or the MCP server yet. To use them too, install the `tingra-cli` formula below.
 
 ## Tingra Cameras
 
@@ -67,13 +79,18 @@ See the [main README](https://github.com/larryaasen/tingra#getting-started-the-c
 
 ## What's here
 
+- **`tingra`** — the Tingra app (a cask). Apple Silicon (arm64), macOS 15+. Signed, notarized, and stapled; the tap downloads the prebuilt disk image from the product's GitHub release, the same release that carries `tingra-cli`.
 - **`tingra-cameras`** — the Tingra Cameras app (a cask). Apple Silicon (arm64), macOS 26+. Signed, notarized, and stapled; the tap downloads the prebuilt disk image from the app's GitHub release.
 - **`tingra-cli`** — the headless engine front end (stream, record, and the MCP server). Apple Silicon (arm64), macOS 15+. Signed and notarized; the tap downloads the prebuilt binary and never builds from source.
 
 ## Upgrade / uninstall
 
 ```sh
-brew update && brew upgrade tingra-cli
+brew update && brew upgrade --cask tingra
+brew uninstall --cask tingra
+brew uninstall --zap --cask tingra   # also removes Tingra's own settings, logs, and projects
+
+brew upgrade tingra-cli
 tingra-cli serve --install     # re-point the LaunchAgent after an upgrade
 
 brew uninstall tingra-cli
@@ -82,6 +99,8 @@ tingra-cli serve --uninstall   # run before uninstalling to remove the LaunchAge
 brew upgrade --cask tingra-cameras
 brew uninstall --cask tingra-cameras
 ```
+
+`--zap` leaves the files `tingra-cli` and Tingra Cameras share with the app, and it never touches the Keychain, where Tingra keeps stream keys. To remove those, choose Remove All Data in Tingra's Data settings before uninstalling.
 
 ## License
 
